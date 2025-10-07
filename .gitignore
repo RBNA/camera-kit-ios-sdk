@@ -2,6 +2,13 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## Hidden macOS file system file
+.DS_Store
+
+## Package data
+*.resolved
+.swiftpm/
+
 ## User settings
 xcuserdata/
 

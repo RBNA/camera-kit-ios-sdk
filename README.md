@@ -1,3 +1,8 @@
+> **Note:**  
+> This fork of the Camera Kit iOS SDK is maintained under the Red Bull organization.  
+> Its purpose is to improve and extend the SDK’s **customization capabilities**, making it more **developer‑friendly and configurable** when integrated into other projects.  
+> The goal is **not** to add proprietary features or custom behavior, but to enhance flexibility and maintainability for developers consuming the SDK.
+
 <div align="center">
  
 ![camerakit_icon](https://github.com/user-attachments/assets/036e42d2-c99f-45bc-ac0a-fe2fc462b6eb)
