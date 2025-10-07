@@ -7,10 +7,10 @@ import SwiftUI
 /// SwiftUI wrapper for the reference UI carousel view.
 public struct CarouselView: UIViewRepresentable {
     /// The lenses that should be visible in the carousel
-    @Binding var availableLenses: [Lens]
+    @Binding public var availableLenses: [Lens]
 
     /// The currently selected lens, if one is selected.
-    @Binding var selectedLens: Lens?
+    @Binding public var selectedLens: Lens?
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
