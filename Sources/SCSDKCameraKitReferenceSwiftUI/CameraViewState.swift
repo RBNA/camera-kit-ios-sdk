@@ -11,7 +11,7 @@ public class CameraViewState: NSObject, ObservableObject {
     private var cancelleables: Set<AnyCancellable> = []
     private var hideMessage: DispatchWorkItem?
 
-    weak var cameraController: CameraController! {
+    public weak var cameraController: CameraController! {
         didSet {
             guard let controller = cameraController else { return }
             controller.uiDelegate = self
@@ -33,19 +33,19 @@ public class CameraViewState: NSObject, ObservableObject {
     }
 
     /// The lenses available for selection
-    @Published var lenses: [Lens] = []
+    @Published public var lenses: [Lens] = []
 
     /// The selected lens, if one is selected
-    @Published var selectedLens: Lens?
+    @Published public var selectedLens: Lens?
 
     /// Whether a lens is being loaded or not
-    @Published var loading = false
+    @Published public var loading = false
 
     /// Any hint that a lens has requested be displayed
     @Published var hint: String?
 
     /// A photo/video the user has captured, if they have captured one
-    @Published var captured: Captured?
+    @Published public var captured: Captured?
 
     /// Whether a diagnostic message is being displayed
     @Published var showingMessage = false
@@ -124,13 +124,13 @@ extension CameraViewState: CameraControllerUIDelegate {
     }
 }
 
-enum Captured {
+public enum Captured {
     case photo(image: UIImage)
     case video(url: URL)
 }
 
 extension Captured: Identifiable {
-    var id: Int {
+    public var id: Int {
         switch self {
         case let .photo(image):
             return image.hashValue
