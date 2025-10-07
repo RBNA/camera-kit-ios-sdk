@@ -5,7 +5,8 @@
 
 ---
 
-<div align="center"> 
+<div align="center">
+ 
 ![camerakit_icon](https://github.com/user-attachments/assets/036e42d2-c99f-45bc-ac0a-fe2fc462b6eb)
 
 # Camera Kit for iOS

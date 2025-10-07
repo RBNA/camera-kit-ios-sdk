@@ -11,9 +11,17 @@ public struct PreviewView: UIViewRepresentable {
     /// Initializes a preview view and connects it to a CameraKit session as an output
     /// - Parameter cameraKit: the session to attach the preview view as an output to
     /// - Parameter automaticallyConfiguresTouchHandler: whether or not touch handling should automatically be configured for the view
-    public init(cameraKit: CameraKitProtocol, automaticallyConfiguresTouchHandler: Bool = true) {
+    public init(
+        cameraKit: CameraKitProtocol,
+        automaticallyConfiguresTouchHandler: Bool = true,
+        explicitViewportProvider: ExplicitViewportProvider? = nil
+    ) {
         self.cameraKit = cameraKit
         inner.automaticallyConfiguresTouchHandler = automaticallyConfiguresTouchHandler
+
+        if let explicitViewportProvider {
+            inner.explicitViewportProvider = explicitViewportProvider
+        }
     }
 
     public func makeUIView(context: Context) -> some UIView {
