@@ -19,7 +19,7 @@ public struct CameraButton: UIViewRepresentable {
     private let recordingFinishAction: (() -> Void)?
 
     /// Minimum press duration needed to recognize recording attempt
-    private let minimumPressDuration: TimeInterval
+    private let minimumPressDuration: TimeInterval?
 
     /// Initializes the camera button
     /// - Parameters:
@@ -27,12 +27,12 @@ public struct CameraButton: UIViewRepresentable {
     ///   - recordingCancel: A closure to be called when the user cancels recording. Will be immediately followed by the execution of photoCaptureAction
     ///   - recordingFinish: A closure to be called when the user cancels recording. Will be immediately followed by the execution of photoCaptureAction
     ///   - photoCapture: A closure to be called when a photo is captured
-    init(
+    public init(
         recordingStart: (() -> Void)?,
         recordingCancel: (() -> Void)?,
         recordingFinish: (() -> Void)?,
         photoCapture: (() -> Void)?,
-        minimumPressDuration: TimeInterval
+        minimumPressDuration: TimeInterval? = nil
     ) {
         self.recordingStartAction = recordingStart
         self.recordingCancelAction = recordingCancel
@@ -48,7 +48,11 @@ public struct CameraButton: UIViewRepresentable {
     public func makeUIView(context: Context) -> some UIView {
         let inner = SCSDKCameraKitReferenceUI.CameraButton()
         inner.delegate = context.coordinator
-        inner.pressGestureRecognizer.minimumPressDuration = minimumPressDuration
+
+        if let minimumPressDuration {
+            inner.pressGestureRecognizer.minimumPressDuration = minimumPressDuration
+        }
+
         return inner
     }
 
