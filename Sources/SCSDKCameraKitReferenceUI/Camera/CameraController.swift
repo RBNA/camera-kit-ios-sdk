@@ -674,6 +674,23 @@ open class CameraController: NSObject, LensRepositoryGroupObserver, LensPrefetch
     fileprivate var isAdjustingExposureObservation: NSKeyValueObservation?
 
     fileprivate var isAdjustingFocusObservation: NSKeyValueObservation?
+
+    // MARK: Lens Application
+
+    /// Generates the launch data for the lens. By default, this is just the vendor data attached to the lens.
+    /// - Parameter lens: the lens to generate launch data for
+    /// - Returns: launch data.
+    open func launchData(for lens: Lens) -> LensLaunchData {
+        guard !lens.vendorData.isEmpty else {
+            return EmptyLensLaunchData()
+        }
+
+        let launchDataBuilder = LensLaunchDataBuilder()
+        for (key, val) in lens.vendorData {
+            launchDataBuilder.add(string: val, key: key)
+        }
+        return launchDataBuilder.launchData ?? EmptyLensLaunchData()
+    }
 }
 
 // MARK: Camera Pipeline Configuration
@@ -748,25 +765,6 @@ private extension CameraController {
                 return
             }
         }
-    }
-}
-
-// MARK: Lens Application
-
-extension CameraController {
-    /// Generates the launch data for the lens. By default, this is just the vendor data attached to the lens.
-    /// - Parameter lens: the lens to generate launch data for
-    /// - Returns: launch data.
-    private func launchData(for lens: Lens) -> LensLaunchData {
-        guard !lens.vendorData.isEmpty else {
-            return EmptyLensLaunchData()
-        }
-
-        let launchDataBuilder = LensLaunchDataBuilder()
-        for (key, val) in lens.vendorData {
-            launchDataBuilder.add(string: val, key: key)
-        }
-        return launchDataBuilder.launchData ?? EmptyLensLaunchData()
     }
 }
 
